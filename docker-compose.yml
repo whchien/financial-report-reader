@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - fin_net
+    depends_on:
+      - backend
+
+  backend:
+    container_name: backend
+    build:
+      context: ../financial-report-reader/backend
+    ports:
+      - "8000:8000"
+    networks:
+      - fin_net
+
+networks:
+  fin_net:
